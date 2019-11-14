@@ -1,7 +1,6 @@
 <odoo>
   <data>
     <!-- explicit list view definition -->
-    <!--
     <record model="ir.ui.view" id="digital_review.list">
       <field name="name">digital_review list</field>
       <field name="model">digital_review.digital_review</field>
@@ -13,19 +12,15 @@
         </tree>
       </field>
     </record>
-    -->
 
     <!-- actions opening views on models -->
-    <!--
     <record model="ir.actions.act_window" id="digital_review.action_window">
       <field name="name">digital_review window</field>
       <field name="res_model">digital_review.digital_review</field>
       <field name="view_mode">tree,form</field>
     </record>
-    -->
 
-    <!-- server action to the one above -->
-    <!--
+    <!-- server action to the one above --> 
     <record model="ir.actions.server" id="digital_review.action_server">
       <field name="name">digital_review server</field>
       <field name="model_id" ref="model_digital_review_digital_review"/>
@@ -38,23 +33,19 @@
         }
       </field>
     </record>
-    -->
-
+   
     <!-- Top menu item -->
-    <!--
     <menuitem name="digital_review" id="digital_review.menu_root"/>
-    -->
+   
     <!-- menu categories -->
-    <!--
     <menuitem name="Menu 1" id="digital_review.menu_1" parent="digital_review.menu_root"/>
     <menuitem name="Menu 2" id="digital_review.menu_2" parent="digital_review.menu_root"/>
-    -->
+   
     <!-- actions -->
-    <!--
     <menuitem name="List" id="digital_review.menu_1_list" parent="digital_review.menu_1"
               action="digital_review.action_window"/>
     <menuitem name="Server to list" id="digital_review" parent="digital_review.menu_2"
               action="digital_review.action_server"/>
-    -->
+    
   </data>
 </odoo>

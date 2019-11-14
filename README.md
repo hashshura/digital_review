@@ -1,6 +1,8 @@
 # Digital Review & Reward (`digital_review`)
 
-**Digital Review & Reward** is an IF3141 Information System solution approach utilizing Odoo as a service, authored by **Lelah Tubes**.
+**Digital Review & Reward** is an IF3141 Information System solution approach utilizing Odoo as a service.
+
+Author: **Lelah Tubes**
 
 ## Installation
 

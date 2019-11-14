@@ -23,3 +23,11 @@ git clone git@github.com:hashshura/digital_review.git
 ```
 
 4. Update and install your Odoo apps list via debug: http://localhost:8069/web?debug=1
+
+## Updating the Module
+
+After each update of the module,
+
+1. Go to **Updates - Odoo** and update all of the modules
+
+2. Restart the server via **Windows > Services > odoo-server-13.0**.

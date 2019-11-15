@@ -1,2 +1,8 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_digital_review_digital_review,digital_review.digital_review,model_digital_review_digital_review,,1,0,0,0
+access_digital_review_user,digital_review.user,model_digital_review_user,,1,1,1,1
+access_digital_review_voucher,digital_review.voucher,model_digital_review_voucher,,1,1,1,1
+access_digital_review_menu,digital_review.menu,model_digital_review_menu,,1,1,1,1
+access_digital_review_transaction,digital_review.transaction,model_digital_review_transaction,,1,1,1,1
+access_digital_review_question,digital_review.question,model_digital_review_question,,1,1,1,1
+access_digital_review_answer,digital_review.answer,model_digital_review_answer,,1,1,1,1
+access_digital_review_review,digital_review.review,model_digital_review_review,,1,1,1,1

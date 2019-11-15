@@ -1,21 +1,229 @@
-# -*- coding: utf-8 -*-
+import json
+
 from odoo import http
+from odoo.http import Response
 
 
-class DigitalReview(http.Controller):
-    @http.route('/digital_review/digital_review/', auth='public')
-    def index(self, **kw):
-        return "Hello, za warudo!"
+def strip_dict(d):
+    d.pop('display_name', None)
+    d.pop('create_uid', None)
+    d.pop('create_date', None)
+    d.pop('write_uid', None)
+    d.pop('write_date', None)
+    d.pop('__last_update', None)
+    return d
 
-    @http.route('/digital_review/digital_review/objects/', auth='public')
-    def list(self, **kw):
-        return http.request.render('digital_review.listing', {
-            'root': '/digital_review/digital_review',
-            'objects': http.request.env['digital_review.digital_review'].search([]),
-        })
 
-    @http.route('/digital_review/digital_review/objects/<model("digital_review.digital_review"):obj>/', auth='public')
-    def object(self, obj, **kw):
-        return http.request.render('digital_review.object', {
-            'object': obj
-        })
+def serialize_to_dict(obj):
+    d = obj.__dict__
+    return strip_dict(d)
+
+
+class UserController(http.Controller):
+    base_url = '/api/users'
+    model_name = 'digital_review.user'
+
+    @http.route(base_url, type='json', methods=['POST'], auth='public', csrf=False)
+    def create(self, **kw):
+        result = http.request.env[self.model_name].create(http.request.params)
+        return strip_dict(result[0].read()[0])
+
+    @http.route(base_url, auth='public', csrf=False)
+    def search(self, **kw):
+        result = http.request.env[self.model_name].search([])
+        return json.dumps([strip_dict(x.read()[0]) for x in result], indent=4)
+
+    @http.route('{}/<model("{}"):obj>'.format(base_url, model_name), methods=['DELETE'], auth='public', csrf=False)
+    def unlink(self, obj, **kw):
+        result = obj.unlink()
+        return str(result)
+
+    @http.route('{}/<model("{}"):obj>'.format(base_url, model_name), methods=['GET'], auth='public', csrf=False)
+    def read(self, obj, **kw):
+        result = obj.read()
+        return json.dumps(strip_dict(result[0]), indent=4)
+
+    @http.route('{}/<model("{}"):obj>'.format(base_url, model_name), type='json', methods=['PATCH'], auth='public', csrf=False)
+    def write(self, obj, **kw):
+        result = obj.write(http.request.params)
+        return str(result)
+
+
+class VoucherController(http.Controller):
+    base_url = '/api/vouchers'
+    model_name = 'digital_review.voucher'
+
+    @http.route(base_url, type='json', methods=['POST'], auth='public', csrf=False)
+    def create(self, **kw):
+        result = http.request.env[self.model_name].create(http.request.params)
+        return strip_dict(result[0].read()[0])
+
+    @http.route(base_url, auth='public', csrf=False)
+    def search(self, **kw):
+        result = http.request.env[self.model_name].search([])
+        return json.dumps([strip_dict(x.read()[0]) for x in result], indent=4)
+
+    @http.route('{}/<model("{}"):obj>'.format(base_url, model_name), methods=['DELETE'], auth='public', csrf=False)
+    def unlink(self, obj, **kw):
+        result = obj.unlink()
+        return str(result)
+
+    @http.route('{}/<model("{}"):obj>'.format(base_url, model_name), methods=['GET'], auth='public', csrf=False)
+    def read(self, obj, **kw):
+        result = obj.read()
+        return json.dumps(strip_dict(result[0]), indent=4)
+
+    @http.route('{}/<model("{}"):obj>'.format(base_url, model_name), type='json', methods=['PATCH'], auth='public', csrf=False)
+    def write(self, obj, **kw):
+        result = obj.write(http.request.params)
+        return str(result)
+
+
+class MenuController(http.Controller):
+    base_url = '/api/menus'
+    model_name = 'digital_review.menu'
+
+    @http.route(base_url, type='json', methods=['POST'], auth='public', csrf=False)
+    def create(self, **kw):
+        result = http.request.env[self.model_name].create(http.request.params)
+        return strip_dict(result[0].read()[0])
+
+    @http.route(base_url, auth='public', csrf=False)
+    def search(self, **kw):
+        result = http.request.env[self.model_name].search([])
+        return json.dumps([strip_dict(x.read()[0]) for x in result], indent=4)
+
+    @http.route('{}/<model("{}"):obj>'.format(base_url, model_name), methods=['DELETE'], auth='public', csrf=False)
+    def unlink(self, obj, **kw):
+        result = obj.unlink()
+        return str(result)
+
+    @http.route('{}/<model("{}"):obj>'.format(base_url, model_name), methods=['GET'], auth='public', csrf=False)
+    def read(self, obj, **kw):
+        result = obj.read()
+        return json.dumps(strip_dict(result[0]), indent=4)
+
+    @http.route('{}/<model("{}"):obj>'.format(base_url, model_name), type='json', methods=['PATCH'], auth='public', csrf=False)
+    def write(self, obj, **kw):
+        result = obj.write(http.request.params)
+        return str(result)
+
+
+class TransactionController(http.Controller):
+    base_url = '/api/transactions'
+    model_name = 'digital_review.transaction'
+
+    @http.route(base_url, type='json', methods=['POST'], auth='public', csrf=False)
+    def create(self, **kw):
+        result = http.request.env[self.model_name].create(http.request.params)
+        return strip_dict(result[0].read()[0])
+
+    @http.route(base_url, auth='public', csrf=False)
+    def search(self, **kw):
+        result = http.request.env[self.model_name].search([])
+        return json.dumps([strip_dict(x.read()[0]) for x in result], indent=4)
+
+    @http.route('{}/<model("{}"):obj>'.format(base_url, model_name), methods=['DELETE'], auth='public', csrf=False)
+    def unlink(self, obj, **kw):
+        result = obj.unlink()
+        return str(result)
+
+    @http.route('{}/<model("{}"):obj>'.format(base_url, model_name), methods=['GET'], auth='public', csrf=False)
+    def read(self, obj, **kw):
+        result = obj.read()
+        return json.dumps(strip_dict(result[0]), indent=4)
+
+    @http.route('{}/<model("{}"):obj>'.format(base_url, model_name), type='json', methods=['PATCH'], auth='public', csrf=False)
+    def write(self, obj, **kw):
+        result = obj.write(http.request.params)
+        return str(result)
+
+
+class QuestionController(http.Controller):
+    base_url = '/api/questions'
+    model_name = 'digital_review.question'
+
+    @http.route(base_url, type='json', methods=['POST'], auth='public', csrf=False)
+    def create(self, **kw):
+        result = http.request.env[self.model_name].create(http.request.params)
+        return strip_dict(result[0].read()[0])
+
+    @http.route(base_url, auth='public', csrf=False)
+    def search(self, **kw):
+        result = http.request.env[self.model_name].search([])
+        return json.dumps([strip_dict(x.read()[0]) for x in result], indent=4)
+
+    @http.route('{}/<model("{}"):obj>'.format(base_url, model_name), methods=['DELETE'], auth='public', csrf=False)
+    def unlink(self, obj, **kw):
+        result = obj.unlink()
+        return str(result)
+
+    @http.route('{}/<model("{}"):obj>'.format(base_url, model_name), methods=['GET'], auth='public', csrf=False)
+    def read(self, obj, **kw):
+        result = obj.read()
+        return json.dumps(strip_dict(result[0]), indent=4)
+
+    @http.route('{}/<model("{}"):obj>'.format(base_url, model_name), type='json', methods=['PATCH'], auth='public', csrf=False)
+    def write(self, obj, **kw):
+        result = obj.write(http.request.params)
+        return str(result)
+
+
+class AnswerController(http.Controller):
+    base_url = '/api/answers'
+    model_name = 'digital_review.answer'
+
+    @http.route(base_url, type='json', methods=['POST'], auth='public', csrf=False)
+    def create(self, **kw):
+        result = http.request.env[self.model_name].create(http.request.params)
+        return strip_dict(result[0].read()[0])
+
+    @http.route(base_url, auth='public', csrf=False)
+    def search(self, **kw):
+        result = http.request.env[self.model_name].search([])
+        return json.dumps([strip_dict(x.read()[0]) for x in result], indent=4)
+
+    @http.route('{}/<model("{}"):obj>'.format(base_url, model_name), methods=['DELETE'], auth='public', csrf=False)
+    def unlink(self, obj, **kw):
+        result = obj.unlink()
+        return str(result)
+
+    @http.route('{}/<model("{}"):obj>'.format(base_url, model_name), methods=['GET'], auth='public', csrf=False)
+    def read(self, obj, **kw):
+        result = obj.read()
+        return json.dumps(strip_dict(result[0]), indent=4)
+
+    @http.route('{}/<model("{}"):obj>'.format(base_url, model_name), type='json', methods=['PATCH'], auth='public', csrf=False)
+    def write(self, obj, **kw):
+        result = obj.write(http.request.params)
+        return str(result)
+
+
+class ReviewController(http.Controller):
+    base_url = '/api/revews'
+    model_name = 'digital_review.review'
+
+    @http.route(base_url, type='json', methods=['POST'], auth='public', csrf=False)
+    def create(self, **kw):
+        result = http.request.env[self.model_name].create(http.request.params)
+        return strip_dict(result[0].read()[0])
+
+    @http.route(base_url, auth='public', csrf=False)
+    def search(self, **kw):
+        result = http.request.env[self.model_name].search([])
+        return json.dumps([strip_dict(x.read()[0]) for x in result], indent=4)
+
+    @http.route('{}/<model("{}"):obj>'.format(base_url, model_name), methods=['DELETE'], auth='public', csrf=False)
+    def unlink(self, obj, **kw):
+        result = obj.unlink()
+        return str(result)
+
+    @http.route('{}/<model("{}"):obj>'.format(base_url, model_name), methods=['GET'], auth='public', csrf=False)
+    def read(self, obj, **kw):
+        result = obj.read()
+        return json.dumps(strip_dict(result[0]), indent=4)
+
+    @http.route('{}/<model("{}"):obj>'.format(base_url, model_name), type='json', methods=['PATCH'], auth='public', csrf=False)
+    def write(self, obj, **kw):
+        result = obj.write(http.request.params)
+        return str(result)

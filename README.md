@@ -31,3 +31,48 @@ After each update of the module,
 1. Go to **Updates - Odoo** and update all of the modules.
 
 2. Restart the server via **Windows > Services > odoo-server-13.0**.
+
+## CRUD API Endpoints
+
+Every URL endpoint is formatted as `/api/models`.
+
+For example, Voucher model API endpoint will be `/api/vouchers`.
+
+### `POST` `/api/models` - creates new object
+
+Use header as `Content-Type: application/json`.
+
+Request body should be in `{"params": fields}` format. For example, Voucher endpoint body:
+
+```json
+{
+	"params":
+		{
+			"title": "Gudshit",
+			"point": 100,
+			"description": "This shit is gud"
+		}
+}
+```
+
+### `PATCH` `/api/models/<id>` - patches object data with specific object id
+
+Use header as `Content-Type: application/json`.
+
+Request body should be in `{"params": fields}` format. For example, Voucher endpoint body:
+
+```json
+{
+	"params":
+		{
+			"description": "Update this shit"
+		}
+}
+```
+
+### `GET` `/api/models` - returns all defined objects
+
+### `GET` `/api/models/<id>` - returns object with specific id
+
+### `DELETE` `/api/models/<id>` - deletes object with specific id
+

@@ -36,7 +36,9 @@ After each update of the module,
 
 Every URL endpoint is formatted as `/api/<model>s`.
 
-For example, Voucher model API endpoint will be `/api/vouchers`.
+For example, Voucher model API endpoint will be `http://localhost:8069/api/vouchers`.
+
+To show response body, please call below requests.
 
 ### `POST` `/api/<model>s` - creates new object
 

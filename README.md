@@ -36,6 +36,8 @@ After each update of the module,
 
 Every URL endpoint is formatted as `/api/<model>s`.
 
+Available models and their fields are defined in [models.py](https://github.com/hashshura/digital_review/blob/master/models/models.py)
+
 For example, Voucher model API endpoint will be http://localhost:8069/api/vouchers.
 
 To show response body, please call below requests.

@@ -34,11 +34,11 @@ After each update of the module,
 
 ## CRUD API Endpoints
 
-Every URL endpoint is formatted as `/api/models`.
+Every URL endpoint is formatted as `/api/<model>s`.
 
 For example, Voucher model API endpoint will be `/api/vouchers`.
 
-### `POST` `/api/models` - creates new object
+### `POST` `/api/<model>s` - creates new object
 
 Use header as `Content-Type: application/json`.
 
@@ -55,7 +55,7 @@ Request body should be in `{"params": fields}` format. For example, Voucher endp
 }
 ```
 
-### `PATCH` `/api/models/<id>` - patches object data with specific object id
+### `PATCH` `/api/<model>s/<id>` - patches object data with specific object id
 
 Use header as `Content-Type: application/json`.
 
@@ -70,9 +70,9 @@ Request body should be in `{"params": fields}` format. For example, Voucher endp
 }
 ```
 
-### `GET` `/api/models` - returns all defined objects
+### `GET` `/api/<model>s` - returns all defined objects
 
-### `GET` `/api/models/<id>` - returns object with specific id
+### `GET` `/api/<model>s/<id>` - returns object with specific id
 
-### `DELETE` `/api/models/<id>` - deletes object with specific id
+### `DELETE` `/api/<model>s/<id>` - deletes object with specific id
 

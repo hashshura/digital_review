@@ -46,12 +46,12 @@ Request body should be in `{"params": fields}` format. For example, Voucher endp
 
 ```json
 {
-	"params":
-		{
-			"title": "Gudshit",
-			"point": 100,
-			"description": "This shit is gud"
-		}
+  "params":
+    {
+      "title": "Gudshit",
+      "point": 100,
+      "description": "This shit is gud"
+    }
 }
 ```
 
@@ -63,10 +63,10 @@ Request body should be in `{"params": fields}` format. For example, Voucher endp
 
 ```json
 {
-	"params":
-		{
-			"description": "Update this shit"
-		}
+  "params":
+    {
+      "description": "Update this shit"
+    }
 }
 ```
 

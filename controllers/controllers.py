@@ -29,7 +29,8 @@ class UserController(http.Controller):
 
     @http.route(base_url, auth='public', csrf=False, cors='*')
     def search(self, **kw):
-        result = http.request.env[self.model_name].search([])
+        params = [[k, '=', kw[k]] for k in kw.keys()]
+        result = http.request.env[self.model_name].search(params)
         return json.dumps([strip_dict(x.read()[0]) for x in result], indent=4)
 
     @http.route('{}/<model("{}"):obj>'.format(base_url, model_name), methods=['DELETE'], auth='public', csrf=False, cors='*')
@@ -59,7 +60,8 @@ class VoucherController(http.Controller):
 
     @http.route(base_url, auth='public', csrf=False, cors='*')
     def search(self, **kw):
-        result = http.request.env[self.model_name].search([])
+        params = [[k, '=', kw[k]] for k in kw.keys()]
+        result = http.request.env[self.model_name].search(params)
         return json.dumps([strip_dict(x.read()[0]) for x in result], indent=4)
 
     @http.route('{}/<model("{}"):obj>'.format(base_url, model_name), methods=['DELETE'], auth='public', csrf=False, cors='*')
@@ -93,7 +95,8 @@ class MenuController(http.Controller):
 
     @http.route(base_url, auth='public', csrf=False, cors='*')
     def search(self, **kw):
-        result = http.request.env[self.model_name].search([])
+        params = [[k, '=', kw[k]] for k in kw.keys()]
+        result = http.request.env[self.model_name].search(params)
         return json.dumps([strip_dict(x.read()[0]) for x in result], indent=4)
 
     @http.route('{}/<model("{}"):obj>'.format(base_url, model_name), methods=['DELETE'], auth='public', csrf=False, cors='*')
@@ -123,7 +126,8 @@ class TransactionController(http.Controller):
 
     @http.route(base_url, auth='public', csrf=False, cors='*')
     def search(self, **kw):
-        result = http.request.env[self.model_name].search([])
+        params = [[k, '=', kw[k]] for k in kw.keys()]
+        result = http.request.env[self.model_name].search(params)
         return json.dumps([strip_dict(x.read()[0]) for x in result], indent=4)
 
     @http.route('{}/<model("{}"):obj>'.format(base_url, model_name), methods=['DELETE'], auth='public', csrf=False, cors='*')
@@ -153,7 +157,8 @@ class QuestionController(http.Controller):
 
     @http.route(base_url, auth='public', csrf=False, cors='*')
     def search(self, **kw):
-        result = http.request.env[self.model_name].search([])
+        params = [[k, '=', kw[k]] for k in kw.keys()]
+        result = http.request.env[self.model_name].search(params)
         return json.dumps([strip_dict(x.read()[0]) for x in result], indent=4)
 
     @http.route('{}/<model("{}"):obj>'.format(base_url, model_name), methods=['DELETE'], auth='public', csrf=False, cors='*')
@@ -183,7 +188,8 @@ class AnswerController(http.Controller):
 
     @http.route(base_url, auth='public', csrf=False, cors='*')
     def search(self, **kw):
-        result = http.request.env[self.model_name].search([])
+        params = [[k, '=', kw[k]] for k in kw.keys()]
+        result = http.request.env[self.model_name].search(params)
         return json.dumps([strip_dict(x.read()[0]) for x in result], indent=4)
 
     @http.route('{}/<model("{}"):obj>'.format(base_url, model_name), methods=['DELETE'], auth='public', csrf=False, cors='*')
@@ -213,7 +219,8 @@ class ReviewController(http.Controller):
 
     @http.route(base_url, auth='public', csrf=False, cors='*')
     def search(self, **kw):
-        result = http.request.env[self.model_name].search([])
+        params = [[k, '=', kw[k]] for k in kw.keys()]
+        result = http.request.env[self.model_name].search(params)
         return json.dumps([strip_dict(x.read()[0]) for x in result], indent=4)
 
     @http.route('{}/<model("{}"):obj>'.format(base_url, model_name), methods=['DELETE'], auth='public', csrf=False, cors='*')

@@ -3,6 +3,7 @@ import json
 from odoo import http
 from odoo.http import Response, request
 
+
 def strip_dict(d):
     d.pop('display_name', None)
     d.pop('create_uid', None)
@@ -21,6 +22,38 @@ def serialize_to_dict(obj):
 class UserController(http.Controller):
     base_url = '/api/users'
     model_name = 'digital_review.user'
+
+    @http.route('/auth', auth='public', csrf=False, cors='*')
+    def auth(self, **kw):
+        user_id = request.httprequest.cookies.get('user', '-1')
+        result = http.request.env[self.model_name].search(
+            [['id', '=', user_id]])
+        return json.dumps([strip_dict(x.read()[0]) for x in result], indent=4)
+
+    @http.route('/login', auth='public', csrf=False, cors='*')
+    def login(self, **kw):
+        params = [[k, '=', kw[k]] for k in kw.keys()]
+        result = http.request.env[self.model_name].search(params)
+        data = {'success': False}
+        cookies = {}
+
+        try:
+            if len(result):
+                data = {'success': True}
+                cookies = {'user': str(result[0].id)}
+                response = Response(data)
+                for k, v in cookies.items():
+                    response.set_cookie(k, v)
+                return response
+        except Exception:
+            pass
+        return 'failed'
+
+    @http.route('/logout', auth='public', csrf=False, cors='*')
+    def logout(self, **kw):
+        response = Response({})
+        response.set_cookie('user', '')
+        return response
 
     @http.route(base_url, type='json', methods=['POST'], auth='public', csrf=False, cors='*')
     def create(self, **kw):

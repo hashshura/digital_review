@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
+from datetime import datetime
 
 
 class User(models.Model):
@@ -39,10 +40,9 @@ class Menu(models.Model):
 class Transaction(models.Model):
     _name = 'digital_review.transaction'
 
-    name = fields.Char()
-    picture_url = fields.Char()
-    description = fields.Char()
-
+    review_code = fields.Char()
+    user = fields.Many2one('digital_review.user',
+                           string="User", index=True)
     menus = fields.Many2many('digital_review.menu',
                              string="Purchased Items", index=True)
 

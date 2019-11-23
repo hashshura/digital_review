@@ -43,8 +43,8 @@ class Transaction(models.Model):
     review_code = fields.Char()
     user = fields.Many2one('digital_review.user',
                            string="User", index=True)
-    menus = fields.Many2many('digital_review.menu',
-                             string="Purchased Items", index=True)
+    menu = fields.Many2one('digital_review.menu',
+                             string="Purchased Item", index=True)
 
 
 class Question(models.Model):
